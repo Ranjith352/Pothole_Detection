@@ -7,19 +7,13 @@ It is built with Streamlit for a user-friendly web interface and integrates CNN 
 
 Users can:
 
-*Upload images or capture photos through the webcam
-
-*Get pothole detection results with 3D visualization
-
-*View detection history
-
-*Analyze statistics and insights
-
-*Generate downloadable PDF reports
-
-*File complaints
-
-*Provide feedback
+Upload images or capture photos through the webcam
+Get pothole detection results with 3D visualization
+View detection history
+Analyze statistics and insights
+Generate downloadable PDF reports
+File complaints
+Provide feedback
 
 Features:
 ✅ Upload an image for pothole detection.
@@ -48,50 +42,50 @@ Frontend: Streamlit
 
 Deep Learning Models:
 
- *CNN (TensorFlow/Keras .h5 model)
+ CNN (TensorFlow/Keras .h5 model)
  
- *YOLOv8 (Ultralytics)
+ YOLOv8 (Ultralytics)
 
 Visualization:
 
- *OpenCV
+ OpenCV
  
- *Plotly
+ Plotly
  
- *Matplotlib
+ Matplotlib
 
 Others:
- *FPDF for PDF generation
+ FPDF for PDF generation
  
- *Pandas, NumPy for data handling
+ Pandas, NumPy for data handling
  
- *PIL for image processing
+ PIL for image processing
 
 Dataset Description 📂
 
 Uploaded Image Dataset:
 
- *Users upload road surface images.
+ Users upload road surface images.
  
- *Images undergo resizing (224x224) and normalization before being classified.
+ Images undergo resizing (224x224) and normalization before being classified.
  
- *Predictions are made using both CNN (classification) and YOLOv8 (object detection).
+ Predictions are made using both CNN (classification) and YOLOv8 (object detection).
 
 Webcam Captured Dataset:
 
- *Images are captured in real-time using Streamlit's st.camera_input().
+ Images are captured in real-time using Streamlit's st.camera_input().
  
- *Captured images are converted into arrays, resized to 224x224, normalized, and processed live.
+ Captured images are converted into arrays, resized to 224x224, normalized, and processed live.
  
- *These dynamic images help in testing the robustness of the models against:
+ These dynamic images help in testing the robustness of the models against:
  
- *Different lighting conditions
+ Different lighting conditions
     
- *Real-world road surface textures
+ Real-world road surface textures
     
- *Camera quality variations
+ Camera quality variations
     
- *No pre-labeling at capture time — used directly for live detection.
+ No pre-labeling at capture time — used directly for live detection.
 
  Installation 🔧
  
@@ -107,9 +101,9 @@ pip install -r requirements.txt
 
 Place the models:
 
- *Save your trained CNN model as pothole_classifier.h5.
+ Save your trained CNN model as pothole_classifier.h5.
  
- *Ensure yolov8n.pt (YOLOv8 Nano model) is present in the project folder.
+ Ensure yolov8n.pt (YOLOv8 Nano model) is present in the project folder.
 
 Run the application:
 
@@ -138,11 +132,10 @@ This project is licensed under the MIT License.
 
 Team ✨
 
-*Shiva Palaksha SG
+Shiva Palaksha SG
 
-*Sibiyenthal K
+Sibiyenthal K
 
-*Ranjith LK
-
+Ranjith LK
 
 
