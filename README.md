@@ -1,140 +1,204 @@
-# AI-Based-Pothole-Detection-System.
-🚧 Pothole Detection System:
+# 🚧 AI-Based Pothole Detection System
 
-Overview:
-This project presents a Pothole Detection System that uses deep learning models for detecting potholes from uploaded images or live webcam captures.
-It is built with Streamlit for a user-friendly web interface and integrates CNN and YOLOv8 models for classification and object detection.
+## 📌 Project Overview
 
-Users can:
+The **AI-Based Pothole Detection System** is a deep learning application developed to automatically detect potholes from road images. The system combines a **Convolutional Neural Network (CNN)** for binary pothole classification and **YOLOv8** for object detection to identify potholes accurately.
 
-Upload images or capture photos through the webcam
-Get pothole detection results with 3D visualization
-View detection history
-Analyze statistics and insights
-Generate downloadable PDF reports
-File complaints
-Provide feedback
+The application is built using **Streamlit**, providing an interactive interface where users can upload road images or capture images using a webcam for real-time pothole detection. The system also includes LiDAR-style 3D visualization, detection history, statistical analysis, and PDF report generation.
 
-Features:
-✅ Upload an image for pothole detection.
+---
 
-✅ Capture live images using the webcam.
+# 🎯 Objectives
 
-✅ CNN-based image classification.
+- Detect potholes automatically from road images.
+- Classify images as pothole or non-pothole using CNN.
+- Localize potholes using YOLOv8 object detection.
+- Provide a user-friendly web interface.
+- Generate analytical reports and visualization for road monitoring.
 
-✅ YOLOv8-based pothole object detection.
+---
 
-✅ LiDAR-style 3D visualization of road surfaces.
+# 🛠 Technologies Used
 
-✅ Store and view detection history.
+- Python
+- OpenCV
+- TensorFlow / Keras (CNN)
+- YOLOv8 (Ultralytics)
+- Streamlit
+- NumPy
+- Pandas
+- Plotly
+- Matplotlib
+- Pillow (PIL)
+- FPDF
 
-✅ Generate a detailed Pothole Detection Report in PDF format.
+---
 
-✅ Analyze statistics and insights from detections.
+# ✨ Features
 
-✅ File complaints via official portal.
+- Upload road images for pothole detection
+- Webcam-based live image capture
+- CNN-based pothole classification
+- YOLOv8 object detection
+- LiDAR-style 3D visualization
+- Detection history tracking
+- Statistics and insights dashboard
+- PDF report generation
+- Feedback and complaint reporting interface
 
-✅ Collect user feedback for system improvement.
+---
 
-Tech Stack 🛠
+# 📂 Dataset
 
-Frontend: Streamlit
+The project is trained using a pothole image dataset containing two classes:
 
-Deep Learning Models:
+- **Pothole**
+- **Normal Road**
 
- CNN (TensorFlow/Keras .h5 model)
- 
- YOLOv8 (Ultralytics)
+Images are resized to **224 × 224 pixels** and normalized before being passed to the CNN model.
 
-Visualization:
+---
 
- OpenCV
- 
- Plotly
- 
- Matplotlib
+# 🧠 Deep Learning Models
 
-Others:
- FPDF for PDF generation
- 
- Pandas, NumPy for data handling
- 
- PIL for image processing
+### CNN (TensorFlow/Keras)
 
-Dataset Description 📂
+The CNN model performs binary image classification:
 
-Uploaded Image Dataset:
+- Pothole
+- No Pothole
 
- Users upload road surface images.
- 
- Images undergo resizing (224x224) and normalization before being classified.
- 
- Predictions are made using both CNN (classification) and YOLOv8 (object detection).
+The trained model is stored as:
 
-Webcam Captured Dataset:
+```
+pothole_classifier.h5
+```
 
- Images are captured in real-time using Streamlit's st.camera_input().
- 
- Captured images are converted into arrays, resized to 224x224, normalized, and processed live.
- 
- These dynamic images help in testing the robustness of the models against:
- 
- Different lighting conditions
-    
- Real-world road surface textures
-    
- Camera quality variations
-    
- No pre-labeling at capture time — used directly for live detection.
+---
 
- Installation 🔧
- 
-Clone the repository:
+### YOLOv8
 
-git clone https://github.com/your-username/pothole-detection-system.git
+YOLOv8 is used for object detection and localization of potholes within the uploaded image.
 
-cd pothole-detection-system.
+Model file:
 
-Install the required packages:
+```
+yolov8n.pt
+```
 
-pip install -r requirements.txt
+---
 
-Place the models:
+# 📊 System Workflow
 
- Save your trained CNN model as pothole_classifier.h5.
- 
- Ensure yolov8n.pt (YOLOv8 Nano model) is present in the project folder.
+1. User uploads an image or captures one using a webcam.
+2. OpenCV preprocesses the image.
+3. CNN classifies the image as pothole or non-pothole.
+4. YOLOv8 detects and localizes potholes.
+5. Results are displayed in the Streamlit interface.
+6. Detection history is stored.
+7. Statistical insights and LiDAR-style visualization are generated.
+8. PDF reports can be downloaded.
 
-Run the application:
+---
 
-streamlit run app.py
+# 📥 Installation
 
-Folder Structure 📁:
+## Clone the Repository
 
-pothole-detection-system/
+```bash
+git clone https://github.com/your-username/AI-Based-Pothole-Detection-System.git
+cd AI-Based-Pothole-Detection-System
+```
 
+---
+
+## Install Required Libraries
+
+```bash
+pip install streamlit
+pip install tensorflow
+pip install ultralytics
+pip install opencv-python
+pip install numpy
+pip install pandas
+pip install matplotlib
+pip install plotly
+pip install pillow
+pip install fpdf
+```
+
+Or install all packages together:
+
+```bash
+pip install streamlit tensorflow ultralytics opencv-python numpy pandas matplotlib plotly pillow fpdf
+```
+
+---
+
+# 📁 Project Structure
+
+```
+AI-Based-Pothole-Detection-System/
 │
-├── pothole_classifier.h5     # Trained CNN model
+├── main.py
+├── pothole_classifier.h5
+├── yolov8n.pt
+├── popcorn-truck.gif
+├── README.md
+├── requirements.txt
+└── assets/
+```
 
-├── yolov8n.pt                 # YOLOv8 object detection model
+---
 
-├── app.py                     # Main Streamlit app
+# ▶ Running the Application
 
-├── requirements.txt           # Python package requirements
+Run the Streamlit application using:
 
-├── README.md                  # Project README
+```bash
+streamlit run main.py
+```
 
-└── assets/                    # Images like pothole.gif, icons, etc. (Optional)
+The application will automatically open in your default web browser.
 
-License 📜
+---
 
-This project is licensed under the MIT License.
+# 📈 Output
 
-Team ✨
+The application provides:
 
-Shiva Palaksha SG
+- Pothole classification result
+- Object detection output
+- Detection history
+- Statistical dashboard
+- LiDAR-style 3D visualization
+- Downloadable PDF reports
 
-Sibiyenthal K
+---
 
-Ranjith LK
+# 🚀 Future Enhancements
 
+- GPS-based pothole location tracking
+- Real-time video processing
+- Mobile application integration
+- Cloud deployment
+- Automatic road maintenance alerts
+- Multi-class road damage detection (cracks, patches, potholes)
+
+---
+
+# 🎓 Applications
+
+- Smart City Infrastructure
+- Road Condition Monitoring
+- Municipal Road Maintenance
+- Autonomous Vehicles
+- Transportation Departments
+- Highway Inspection Systems
+
+---
+
+
+# 📄 License
+
+This project is developed for educational and research purposes.
