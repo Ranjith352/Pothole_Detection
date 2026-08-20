@@ -1,204 +1,114 @@
-# 🚧 AI-Based Pothole Detection System
+# Pothole Detection & AI Road Diagnostics Platform
 
-## 📌 Project Overview
-
-The **AI-Based Pothole Detection System** is a deep learning application developed to automatically detect potholes from road images. The system combines a **Convolutional Neural Network (CNN)** for binary pothole classification and **YOLOv8** for object detection to identify potholes accurately.
-
-The application is built using **Streamlit**, providing an interactive interface where users can upload road images or capture images using a webcam for real-time pothole detection. The system also includes LiDAR-style 3D visualization, detection history, statistical analysis, and PDF report generation.
+An enterprise-grade Deep Learning web platform for detecting road hazards and potholes using a **React frontend** and **FastAPI backend** architecture with **PostgreSQL database persistence**, **CNN binary classification**, **Ultralytics YOLOv8 object detection**, and **3D LiDAR-style surface mesh rendering**.
 
 ---
 
-# 🎯 Objectives
-
-- Detect potholes automatically from road images.
-- Classify images as pothole or non-pothole using CNN.
-- Localize potholes using YOLOv8 object detection.
-- Provide a user-friendly web interface.
-- Generate analytical reports and visualization for road monitoring.
-
----
-
-# 🛠 Technologies Used
-
-- Python
-- OpenCV
-- TensorFlow / Keras (CNN)
-- YOLOv8 (Ultralytics)
-- Streamlit
-- NumPy
-- Pandas
-- Plotly
-- Matplotlib
-- Pillow (PIL)
-- FPDF
-
----
-
-# ✨ Features
-
-- Upload road images for pothole detection
-- Webcam-based live image capture
-- CNN-based pothole classification
-- YOLOv8 object detection
-- LiDAR-style 3D visualization
-- Detection history tracking
-- Statistics and insights dashboard
-- PDF report generation
-- Feedback and complaint reporting interface
-
----
-
-# 📂 Dataset
-
-The project is trained using a pothole image dataset containing two classes:
-
-- **Pothole**
-- **Normal Road**
-
-Images are resized to **224 × 224 pixels** and normalized before being passed to the CNN model.
-
----
-
-# 🧠 Deep Learning Models
-
-### CNN (TensorFlow/Keras)
-
-The CNN model performs binary image classification:
-
-- Pothole
-- No Pothole
-
-The trained model is stored as:
+## Architecture Overview
 
 ```
-pothole_classifier.h5
+React Frontend (Vite, React Router, Lucide Icons, Recharts, Plotly.js)
+       │
+       ▼ REST API / HTTP
+FastAPI Backend (Port 8000)
+       ├── CNN Binary Classifier (pothole_classifier.keras / .h5)
+       ├── Ultralytics YOLOv8 (yolov8n.pt road scene object bounding)
+       ├── OpenCV & NumPy 3D Surface Matrix Generator
+       ├── FPDF2 PDF Report Generator
+       └── SQLAlchemy ORM -> PostgreSQL (with automatic SQLite fallback)
 ```
 
 ---
 
-### YOLOv8
-
-YOLOv8 is used for object detection and localization of potholes within the uploaded image.
-
-Model file:
+## Directory Structure
 
 ```
-yolov8n.pt
-```
-
----
-
-# 📊 System Workflow
-
-1. User uploads an image or captures one using a webcam.
-2. OpenCV preprocesses the image.
-3. CNN classifies the image as pothole or non-pothole.
-4. YOLOv8 detects and localizes potholes.
-5. Results are displayed in the Streamlit interface.
-6. Detection history is stored.
-7. Statistical insights and LiDAR-style visualization are generated.
-8. PDF reports can be downloaded.
-
----
-
-# 📥 Installation
-
-## Clone the Repository
-
-```bash
-git clone https://github.com/your-username/AI-Based-Pothole-Detection-System.git
-cd AI-Based-Pothole-Detection-System
-```
-
----
-
-## Install Required Libraries
-
-```bash
-pip install streamlit
-pip install tensorflow
-pip install ultralytics
-pip install opencv-python
-pip install numpy
-pip install pandas
-pip install matplotlib
-pip install plotly
-pip install pillow
-pip install fpdf
-```
-
-Or install all packages together:
-
-```bash
-pip install streamlit tensorflow ultralytics opencv-python numpy pandas matplotlib plotly pillow fpdf
-```
-
----
-
-# 📁 Project Structure
-
-```
-AI-Based-Pothole-Detection-System/
+Pothole_Detection/
+├── backend/
+│   ├── app/
+│   │   ├── config/settings.py
+│   │   ├── database/ (database.py, models.py, schemas.py)
+│   │   ├── models/ (cnn_model.py, yolo_model.py)
+│   │   ├── services/ (detection_service.py, image_service.py, statistics_service.py, report_service.py)
+│   │   ├── routers/ (detection.py, history.py, statistics.py, reports.py, feedback.py, complaint.py)
+│   │   └── main.py
+│   ├── requirements.txt
+│   └── .env
 │
-├── main.py
-├── pothole_classifier.h5
-├── yolov8n.pt
-├── popcorn-truck.gif
-├── README.md
-├── requirements.txt
-└── assets/
+├── frontend/
+│   ├── src/
+│   │   ├── components/ (Layout, Sidebar, Navbar, StatCard, ImageUploader, CameraCapture, DetectionResult, LiDarVisualization, DetectionHistoryTable, LoadingSpinner)
+│   │   ├── pages/ (Home, Detection, History, Statistics, Reports, Complaint, Feedback, About)
+│   │   ├── services/api.js
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── package.json
+│   ├── vite.config.js
+│   └── .env
+│
+├── legacy/ (Contains original main.py Streamlit script for reference)
+├── uploads/ (Processed detection image artifacts)
+├── generated_reports/ (Generated PDF report downloads)
+├── pothole_classifier.keras (Centralized trained CNN model)
+├── pothole_classifier.h5 (Model fallback weights)
+└── yolov8n.pt (YOLO object detection model)
 ```
 
 ---
 
-# ▶ Running the Application
+## Running the Application
 
-Run the Streamlit application using:
-
+### 1. Backend Service (FastAPI)
 ```bash
-streamlit run main.py
+# Navigate to backend directory
+cd backend
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Start FastAPI server
+uvicorn app.main:app --reload --port 8000
 ```
+- **API Base URL**: `http://localhost:8000`
+- **Interactive Swagger Docs**: `http://localhost:8000/docs`
+- **ReDoc API Documentation**: `http://localhost:8000/redoc`
 
-The application will automatically open in your default web browser.
+### 2. Frontend Application (React + Vite)
+```bash
+# Navigate to frontend directory
+cd frontend
 
----
+# Install Node dependencies
+npm install
 
-# 📈 Output
-
-The application provides:
-
-- Pothole classification result
-- Object detection output
-- Detection history
-- Statistical dashboard
-- LiDAR-style 3D visualization
-- Downloadable PDF reports
-
----
-
-# 🚀 Future Enhancements
-
-- GPS-based pothole location tracking
-- Real-time video processing
-- Mobile application integration
-- Cloud deployment
-- Automatic road maintenance alerts
-- Multi-class road damage detection (cracks, patches, potholes)
+# Start Vite development server
+npm run dev
+```
+- **Frontend App URL**: `http://localhost:5173`
 
 ---
 
-# 🎓 Applications
+## Key Features & Pages
 
-- Smart City Infrastructure
-- Road Condition Monitoring
-- Municipal Road Maintenance
-- Autonomous Vehicles
-- Transportation Departments
-- Highway Inspection Systems
+1. **Home**: Dashboard hero banner, quick action links, feature highlights.
+2. **Pothole Detection**: Drag & drop image upload or browser webcam stream capture. CNN classification, confidence score, YOLO scene bounding, and LiDAR 3D surface plot.
+3. **Detection History**: Paginated log of historical road scans with search filter, date range, and full image view modal.
+4. **Statistics & Insights**: Aggregated scan counts, pothole percentage, average confidence, distribution pie chart, confidence bar chart, and activity trend timeline (Recharts).
+5. **Report Generation**: Instant PDF report compilation with FPDF2 and download link.
+6. **Complaint Report**: Guidance on reporting hazardous potholes with official link to Tamil Nadu Road Safety Authority (TNRSA).
+7. **Feedback & Improvement**: Submission form for False Positives, False Negatives, and General Suggestions stored in database.
+8. **About & Team**: Overview of CNN & YOLO architectures, project details, and development team cards (**Shiva Palaksha SG**, **Sibiyenthal K**, **Ranjith LK**).
 
 ---
 
+## API Endpoints
 
-# 📄 License
-
-This project is developed for educational and research purposes.
+- `GET /api/health`: Health status check
+- `POST /api/detection/predict`: Multipart image upload for CNN & YOLO detection
+- `POST /api/detection/3d`: Returns 3D surface grid matrix for Plotly rendering
+- `GET /api/history`: Searchable paginated detection history logs
+- `GET /api/statistics`: Aggregated metrics and histogram buckets
+- `GET /api/reports/generate`: Generates and downloads summary PDF report
+- `POST /api/feedback`: Submit model/system feedback
+- `GET /api/complaint/info`: Official road hazard complaint instructions & links
