@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getInitialApiUrl = () => {
   let envUrl = import.meta.env.VITE_API_URL;
-  if (envUrl && envUrl !== 'http://localhost:8000') {
+  if (envUrl) {
     envUrl = envUrl.trim().replace(/\/+$/, '');
     if (!envUrl.startsWith('http://') && !envUrl.startsWith('https://')) {
       envUrl = `https://${envUrl}`;

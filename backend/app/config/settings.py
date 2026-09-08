@@ -28,8 +28,20 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://localhost:3000",
         "http://127.0.0.1:5173",
-        "http://127.0.0.1:3000"
+        "http://127.0.0.1:3000",
+        "*"
     ]
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        cors_env = os.getenv("CORS_ORIGINS")
+        if cors_env:
+            try:
+                parsed = json.loads(cors_env)
+                if isinstance(parsed, list):
+                    self.CORS_ORIGINS = parsed
+            except Exception:
+                self.CORS_ORIGINS = [o.strip() for o in cors_env.split(",") if o.strip()]
 
     class Config:
         env_file = ".env"
