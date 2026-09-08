@@ -1,5 +1,10 @@
 # Pothole Detection & AI Road Diagnostics Platform
 
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live%20Demo-black?logo=vercel)](https://pothole-detection-taupe.vercel.app)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/Ranjith352/Pothole_Detection)
+
+**Live Web Application**: [https://pothole-detection-taupe.vercel.app](https://pothole-detection-taupe.vercel.app)
+
 An enterprise-grade Deep Learning web platform for detecting road hazards and potholes using a **React frontend** and **FastAPI backend** architecture with **PostgreSQL database persistence**, **CNN binary classification**, **Ultralytics YOLOv8 object detection**, and **3D LiDAR-style surface mesh rendering**.
 
 ---
