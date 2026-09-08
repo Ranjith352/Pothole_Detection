@@ -1,8 +1,12 @@
 import axios from 'axios';
 
 const getInitialApiUrl = () => {
-  const envUrl = import.meta.env.VITE_API_URL;
+  let envUrl = import.meta.env.VITE_API_URL;
   if (envUrl && envUrl !== 'http://localhost:8000') {
+    envUrl = envUrl.trim().replace(/\/+$/, '');
+    if (!envUrl.startsWith('http://') && !envUrl.startsWith('https://')) {
+      envUrl = `https://${envUrl}`;
+    }
     return envUrl;
   }
   // Use 127.0.0.1 to avoid Windows IPv6 localhost resolution mismatch

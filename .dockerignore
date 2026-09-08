@@ -1,0 +1,12 @@
+.git
+.venv
+venv
+dataset
+frontend/node_modules
+frontend/dist
+__pycache__
+*.pyc
+.vscode
+.idea
+*.h5
+pothole_classifier_backup.h5
