@@ -1,0 +1,17 @@
+backend/
+dataset/
+*.h5
+*.keras
+*.pt
+*.ipynb
+*.jpg
+*.webp
+*.gif
+*.avif
+uploads/
+generated_reports/
+legacy/
+.venv/
+venv/
+*.py
+node_modules/
